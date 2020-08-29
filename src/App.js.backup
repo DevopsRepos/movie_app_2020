@@ -1,0 +1,56 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+
+function Food({ name,picture,rating }) {
+  
+  return (
+    <div> 
+      <h1>I like {name} </h1>
+      <h2>{rating}/5.0</h2>
+      <img src={picture} alt={name}/>
+    </div>
+  );
+}
+
+const foodIlike = [
+  {
+    id : 1,
+    name: 'kimchi',
+    image: 'https://www.maangchi.com/wp-content/uploads/2019/11/vegankimchi-insta.jpg',
+    rating : 5,
+  },
+  {
+    id : 2,
+    name: 'kimbap',
+    image:  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Vegetable_gimbap.jpg/440px-Vegetable_gimbap.jpg',
+    rating : 4.5,
+  },
+
+];
+
+function renderFood(dish) {
+   return <Food name={dish.name} picture={dish.image} />;
+}
+
+function App() {
+ // return <div className="App" />;
+ // console.log(foodIlike.map(renderFood));
+ return (
+  <div> 
+    
+     { foodIlike.map(dish => (
+        <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating} />
+     ))} 
+
+  </div>
+ );
+}
+
+Food.prototype = {
+  name : PropTypes.string.isRequired,
+  picture : PropTypes.string.isRequired,
+  rating : PropTypes.number.isRequired,
+};
+
+export default App;
